@@ -14,9 +14,13 @@ mongoose.connect(
     console.log("Connected to db");
   }
 );
+app.get("/latest", async (req, res)=>{
+  const articles=await Article.find({}).sort([['timestamp', -1]]).limit(5);
+  res.send(articles);
+})
 app.get("/all", async (req, res) => {
   const { filter, cat } = req.query;
-  const allArticles = await Article.find({ category: cat });
+  const allArticles = await Article.find({ category: cat }).sort([['timestamp', -1]);
   console.log(allArticles);
   const sendThese = allArticles.filter((ele) => ele.title.includes(filter));
   res.send(sendThese);

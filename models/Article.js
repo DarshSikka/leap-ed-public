@@ -20,6 +20,10 @@ const schema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  timestamp: {
+    type: Date,
+    default: new Date()
+  }
 });
 const Article = mongoose.model("Article", schema, "articles");
 module.exports = Article;
