@@ -21,4 +21,9 @@ app.get("/all", async (req, res) => {
   const sendThese = allArticles.filter((ele) => ele.title.includes(filter));
   res.send(sendThese);
 });
+app.get("/getbyid", async (req, res)=>{
+  const {name}=req.query;
+  const art=await Article.findOne({  title: name })
+  res.send(art);
+})
 app.listen(port, console.log(`Listening on port ${port}`));
