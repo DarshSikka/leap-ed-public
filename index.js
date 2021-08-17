@@ -20,7 +20,7 @@ app.get("/latest", async (req, res)=>{
 })
 app.get("/all", async (req, res) => {
   const { filter, cat } = req.query;
-  const allArticles = await Article.find({ category: cat }).sort([['timestamp', -1]);
+  const allArticles = await Article.find({ category: cat }).sort([['timestamp', -1]]);
   console.log(allArticles);
   const sendThese = allArticles.filter((ele) => ele.title.includes(filter));
   res.send(sendThese);
